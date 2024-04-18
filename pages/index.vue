@@ -4,8 +4,14 @@
     </div>
 </template>
 
-<script lang="ts" setup>
-
+<script lang="ts"  >
+export default {
+  setup() {
+    definePageMeta({
+      redirect:'/ortography'
+    });
+  }
+}
 </script>
 
 <style></style>

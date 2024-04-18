@@ -10,7 +10,8 @@
       <div class="border-gray-700 border my-3"></div>
 
       <!-- Nav Links -->
-
+      <SideBarMenuItem v-for="route in getRoutes" :key="route.path" :description="route.description" :icon="route.icon"
+        :path="route.path" :title="route.title" />
       <!-- End Nav Links -->
     </nav>
 
@@ -24,7 +25,26 @@
   </main>
 </template>
 
-<script lang="ts" setup>
+<script lang="ts">
+import type { MenuItem } from '../interfaces/sideBarMenuItemInterface';
+
+export default {
+  computed: {
+    getRoutes(): MenuItem[] {
+      const router = useRouter();
+      const routes = router.options.routes
+        .filter((route: any) =>  Object.keys(route.meta).length > 0)
+        .map((route: any) => ({
+          icon: route.meta.icon,
+          title: route.meta.title,
+          description: route.meta.description,
+          path: route.path,
+        }));
+      console.log('routes', routes);
+      return routes;
+    }
+  }
+}
 
 </script>
 

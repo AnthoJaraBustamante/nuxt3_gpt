@@ -9,8 +9,16 @@
   </div>
 </template>
 
-<script lang="ts" setup>
-
+<script lang="ts">
+export default {
+  setup() {
+    definePageMeta({
+      icon: 'fa-solid fa-spell-check',
+      title: 'Ortografía',
+      description: 'Corregir ortografía',
+    });
+  }
+}
 </script>
 
 <style></style>

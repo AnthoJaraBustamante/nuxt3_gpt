@@ -4,10 +4,16 @@
   </div>
 </template>
 
-<script lang="ts" setup>
-
+<script lang="ts">
+export default {
+  setup() {
+    definePageMeta({
+      icon: 'fa-solid fa-water',
+      title: 'Como stream',
+      description: 'Con stream de mensajes',
+    });
+  }
+}
 </script>
 
-<style>
-
-</style>
+<style></style>
