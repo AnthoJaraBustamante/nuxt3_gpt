@@ -5,6 +5,7 @@
         <!-- chat messages -->
         <ChatMessage :text="'Escribe el texto que revise'" />
         <MyMessage :text="'Escribe el texto que revise'" />
+        <TypingLoader />
       </div>
     </div>
     <!-- messagebox -->
