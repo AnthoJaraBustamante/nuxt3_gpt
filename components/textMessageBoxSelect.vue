@@ -1,14 +1,16 @@
 <template>
   <form @submit.prevent="sendMessage" class="flex flex-row items-center h-16 rounded-xl bg-white w-full px-4">
     <div class="flex-grow">
-      <div class="relative w-full">
+      <div class="flex">
 
         <input type="text" autofocus
           class="flex w-full border rounded-xl text-gray-800 focus:outline-none focus:border-indigo-300 pl-4 h-10"
           :placeholder="placeholder" v-model="message">
 
-        <select class="w-2/5 ml-5 border rounded-xl text-gray-800 focus:outline-none focus:border-indigo-300 pl-4 h-10">
+        <select @change="updateSelectedOption"
+          class="w-2/5 ml-5 border rounded-xl text-gray-800 focus:outline-none focus:border-indigo-300 pl-4 h-10">
           <option value="">Seleccione</option>
+          <option v-for="option in options" :key="option.id" :value="option.id">{{ option.text }}</option>
         </select>
       </div>
     </div>
@@ -23,28 +25,39 @@
 </template>
 
 <script lang="ts">
+export interface TextMessageOption {
+  id: string;
+  text: string;
+};
+
 export default {
   props: {
     placeholder: {
       type: String,
       default: '',
     },
-    disableCorrection: {
-      type: Boolean,
-      default: false,
+    options: {
+      type: Array as PropType<TextMessageOption[]>,
+      require: true,
     },
   },
   emits: ['on-message'],
   methods: {
     sendMessage() {
-      if (this.message === '') return;
-      this.$emit('on-message', this.message);
+      if (this.message === '' || this.selectedOption === '') return;
+      this.$emit('on-message', this.message, this.selectedOption);
       this.message = '';
+      this.selectedOption = '';
+    },
+    updateSelectedOption(event: Event) {
+      const target = event.target as HTMLSelectElement;
+      this.selectedOption = target.value;
     },
   },
   data() {
     return {
       message: '',
+      selectedOption: '',
     }
   }
 }
