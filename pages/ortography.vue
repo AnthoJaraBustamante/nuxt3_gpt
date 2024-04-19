@@ -9,6 +9,7 @@
       </div>
     </div>
     <!-- messagebox -->
+    <TextMessageBoxSelect placeholder="Escribe aquí lo que deseas" @on-message="onMessage" />
   </div>
 </template>
 
@@ -20,6 +21,11 @@ export default {
       title: 'Ortografía',
       description: 'Corregir ortografía',
     });
+  },
+  methods: {
+    onMessage(message: string) {
+      console.log(message);
+    }
   }
 }
 </script>

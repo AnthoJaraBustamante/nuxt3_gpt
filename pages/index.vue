@@ -1,6 +1,5 @@
 <template>
     <div class="text-3xl underline">
-        Home
     </div>
 </template>
 
